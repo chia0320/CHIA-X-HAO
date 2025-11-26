@@ -1,257 +1,358 @@
-const itinerary = [
-  {
-    id: "D1",
-    date: "01/01",
-    weekday: "三",
-    title: "抵達福岡・逛街・入住酒店",
-    weather: { temp: 8, icon: "⛅️", place: "福岡" },
-    events: [
-      {
-        time: "11:00",
-        tag: "抵達",
-        title: "抵達福岡機場",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "12:30",
-        tag: "購物",
-        title: "LaLaport 福岡",
-        subtitle: "大型購物中心",
-        meta: ""
-      },
-      {
-        time: "15:00",
-        tag: "景點",
-        title: "博多運河城",
-        subtitle: "逛街・吃飯・購物",
-        meta: ""
-      },
-      {
-        time: "住宿",
-        tag: "飯店",
-        title: "S-Peria Hotel Hakata",
-        subtitle: "含早餐",
-        meta: ""
-      }
-    ]
-  },
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>CHIA X HAO 🇯🇵 九州之旅</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Noto Sans TC", system-ui, sans-serif;
+    }
 
-  {
-    id: "D2",
-    date: "01/02",
-    weekday: "四",
-    title: "租車・九州野生動物園・別府地獄谷・由布院",
-    weather: { temp: 6, icon: "☀️", place: "大分" },
-    events: [
-      {
-        time: "09:00",
-        tag: "租車",
-        title: "取車：スカイレンタカー博多駅店",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "11:00",
-        tag: "景點",
-        title: "九州野生動物園",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "13:00",
-        tag: "景點",
-        title: "別府地獄谷",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "14:30",
-        tag: "展望",
-        title: "狭霧台上展望所",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "15:00",
-        tag: "景點",
-        title: "由布院・湯布院童話村",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "住宿",
-        tag: "飯店",
-        title: "花之湯旅館 Oyado Hananoyu",
-        subtitle: "需於 18:00 前 check in",
-        meta: ""
-      }
-    ]
-  },
+    body {
+      background: #0d0f33;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      padding: 24px 12px;
+    }
 
-  {
-    id: "D3",
-    date: "01/03",
-    weekday: "五",
-    title: "上色見熊野座神社・阿蘇火山・草千里・入住山中 Villa",
-    weather: { temp: 3, icon: "🌤", place: "阿蘇" },
-    events: [
-      {
-        time: "11:00",
-        tag: "景點",
-        title: "上色見熊野座神社",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "12:30",
-        tag: "景點",
-        title: "阿蘇中岳火山口",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "14:00",
-        tag: "自然",
-        title: "草千里之濱",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "16:00",
-        tag: "採買",
-        title: "Ebisupana Aso 採購晚餐",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "住宿",
-        tag: "Villa",
-        title: "藤のヴィラ Fujino Villa",
-        subtitle: "房間密碼：0325",
-        meta: ""
-      }
-    ]
-  },
+    .app {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(180deg, #3447ff 0%, #4c6dff 40%, #f5f6fb 40%);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
 
-  {
-    id: "D4",
-    date: "01/04",
-    weekday: "六",
-    title: "阿蘇直升機・高千歲小火車・天安河原・入住高千穗",
-    weather: { temp: 5, icon: "⛅️", place: "高千穗" },
-    events: [
-      {
-        time: "10:00",
-        tag: "體驗",
-        title: "阿蘇山直升機遊覽",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "14:00",
-        tag: "觀光",
-        title: "高千歲小火車",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "15:30",
-        tag: "景點",
-        title: "天安河原",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "住宿",
-        tag: "飯店",
-        title: "Hotel Takachiho",
-        subtitle: "含早餐 + 晚餐",
-        meta: ""
-      }
-    ]
-  },
+    .app-header {
+      padding: 20px 20px 12px;
+      color: #fff;
+    }
 
-  {
-    id: "D5",
-    date: "01/05",
-    weekday: "日",
-    title: "高千穗划船・太宰府天滿宮・天神逛街・還車",
-    weather: { temp: 8, icon: "🌤", place: "福岡" },
-    events: [
-      {
-        time: "08:30",
-        tag: "早餐",
-        title: "於飯店享用早餐",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "10:00",
-        tag: "體驗",
-        title: "高千穗划船",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "13:00",
-        tag: "景點",
-        title: "太宰府天滿宮",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "15:00",
-        tag: "購物",
-        title: "天神 LOFT",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "17:00",
-        tag: "美食",
-        title: "買明太子麵包",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "20:00",
-        tag: "還車",
-        title: "スカイレンタカー博多駅店 還車",
-        subtitle: "",
-        meta: ""
-      },
-      {
-        time: "住宿",
-        tag: "飯店",
-        title: "ZONK HOTEL Hakata",
-        subtitle: "",
-        meta: ""
-      }
-    ]
-  },
+    .trip-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
 
-  {
-    id: "D6",
-    date: "01/06",
-    weekday: "一",
-    title: "回程・搭機返台",
-    weather: { temp: 8, icon: "☀️", place: "福岡" },
-    events: [
+    .trip-sub {
+      opacity: 0.9;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .trip-dates {
+      margin-top: 6px;
+      font-size: 12px;
+      opacity: 0.8;
+      letter-spacing: 0.5px;
+    }
+
+    .day-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .day-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .day-tab {
+      flex: 0 0 auto;
+      min-width: 64px;
+      padding: 10px 8px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.14);
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      font-size: 11px;
+      cursor: pointer;
+      border: 0;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .day-tab span.date {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 4px;
+      opacity: 0.85;
+    }
+
+    .day-tab span.label {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .day-tab.active {
+      background: #fff;
+      color: #3447ff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+      transform: translateY(-1px);
+    }
+
+    .content {
+      padding: 18px 18px 22px;
+      background: #f5f6fb;
+      color: #1f2340;
+      min-height: 340px;
+    }
+
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .day-title-block {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .day-title-block small {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #7b7f9a;
+      margin-top: 4px;
+    }
+
+    .weather {
+      text-align: right;
+      font-size: 13px;
+      color: #7b7f9a;
+    }
+
+    .weather .temp {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3447ff;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 14px 14px 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .time {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3447ff;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eef0ff;
+      color: #3447ff;
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: #878ba2;
+      margin-bottom: 4px;
+    }
+
+    .card-meta {
+      font-size: 11px;
+      color: #a0a4bc;
+    }
+
+    .empty-msg {
+      text-align: center;
+      padding: 40px 16px;
+      color: #9b9fb4;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="trip-name">CHIA X HAO 🇯🇵 九州之旅</div>
+      <div class="trip-sub">Kyushu Japan</div>
+      <div class="trip-dates">JAN 01 – JAN 06, 2026</div>
+    </header>
+
+    <nav class="day-tabs" id="dayTabs"></nav>
+
+    <main class="content" id="dayContent"></main>
+  </div>
+
+  <script>
+    const itinerary = [
       {
-        time: "09:00",
-        tag: "交通",
-        title: "抵達機場",
-        subtitle: "",
-        meta: ""
+        id: "D1",
+        date: "01/01",
+        weekday: "三",
+        title: "抵達福岡・LaLaport・博多運河城",
+        weather: { temp: 8, icon: "⛅️", place: "福岡" },
+        events: [
+          { time: "11:00", tag: "抵達", title: "抵達福岡", subtitle: "", meta: "" },
+          { time: "12:00", tag: "購物", title: "LaLaport 福岡", subtitle: "", meta: "" },
+          { time: "15:00", tag: "景點", title: "博多運河城", subtitle: "", meta: "" },
+          { time: "住宿", tag: "飯店", title: "S-Peria Hotel Hakata", subtitle: "含早餐", meta: "" }
+        ]
       },
+
       {
-        time: "11:40",
-        tag: "搭機",
-        title: "搭機返台",
-        subtitle: "",
-        meta: ""
+        id: "D2",
+        date: "01/02",
+        weekday: "四",
+        title: "租車・野生動物園・別府地獄谷・由布院",
+        weather: { temp: 6, icon: "☀️", place: "大分" },
+        events: [
+          { time: "09:00", tag: "租車", title: "取車：スカイレンタカー博多駅店" },
+          { time: "11:00", tag: "景點", title: "九州野生動物園" },
+          { time: "13:00", tag: "景點", title: "別府地獄谷" },
+          { time: "14:30", tag: "展望", title: "狭霧台上展望所" },
+          { time: "15:00", tag: "景點", title: "湯布院童話村" },
+          { time: "住宿", tag: "飯店", title: "花之湯旅館 Oyado Hananoyu", subtitle: "18:00 前需 check-in" }
+        ]
+      },
+
+      {
+        id: "D3",
+        date: "01/03",
+        weekday: "五",
+        title: "上色見神社・阿蘇火山口・草千里・入住 Villa",
+        weather: { temp: 3, icon: "🌤", place: "阿蘇" },
+        events: [
+          { time: "11:00", tag: "景點", title: "上色見熊野座神社" },
+          { time: "12:30", tag: "景點", title: "阿蘇中岳火山口" },
+          { time: "14:00", tag: "自然", title: "草千里之濱" },
+          { time: "16:00", tag: "採買", title: "Ebisupana Aso 採買晚餐" },
+          { time: "住宿", tag: "Villa", title: "藤のヴィラ Fujino Villa", subtitle: "房門密碼：0325" }
+        ]
+      },
+
+      {
+        id: "D4",
+        date: "01/04",
+        weekday: "六",
+        title: "阿蘇直升機・高千歲小火車・天安河原",
+        weather: { temp: 5, icon: "🌤", place: "高千穗" },
+        events: [
+          { time: "10:00", tag: "體驗", title: "阿蘇山直升機遊覽" },
+          { time: "14:00", tag: "交通", title: "高千歲小火車" },
+          { time: "15:30", tag: "景點", title: "天安河原" },
+          { time: "住宿", tag: "飯店", title: "Hotel Takachiho", subtitle: "含早+晚餐" }
+        ]
+      },
+
+      {
+        id: "D5",
+        date: "01/05",
+        weekday: "日",
+        title: "高千穗划船・太宰府・天神 LOFT・還車",
+        weather: { temp: 8, icon: "☀️", place: "福岡" },
+        events: [
+          { time: "08:30", tag: "早餐", title: "飯店早餐" },
+          { time: "10:00", tag: "體驗", title: "高千穗划船" },
+          { time: "13:00", tag: "景點", title: "太宰府天滿宮" },
+          { time: "15:00", tag: "購物", title: "天神 LOFT" },
+          { time: "17:00", tag: "美食", title: "買明太子麵包" },
+          { time: "20:00", tag: "還車", title: "スカイレンタカー博多駅店 還車" },
+          { time: "住宿", tag: "飯店", title: "ZONK HOTEL Hakata" }
+        ]
+      },
+
+      {
+        id: "D6",
+        date: "01/06",
+        weekday: "一",
+        title: "前往機場・搭機返台",
+        weather: { temp: 8, icon: "⛅️", place: "福岡" },
+        events: [
+          { time: "09:00", tag: "交通", title: "抵達機場" },
+          { time: "11:40", tag: "搭機", title: "回台灣" }
+        ]
       }
-    ]
-  }
-];
+    ];
+
+    // UI 建置
+    const dayTabs = document.getElementById("dayTabs");
+    const dayContent = document.getElementById("dayContent");
+
+    itinerary.forEach((day, index) => {
+      const tab = document.createElement("button");
+      tab.className = "day-tab" + (index === 0 ? " active" : "");
+      tab.innerHTML = `<span class="date">${day.date}</span><span class="label">${day.id}</span>`;
+      tab.onclick = () => renderDay(index);
+      dayTabs.appendChild(tab);
+    });
+
+    function renderDay(i) {
+      [...dayTabs.children].forEach((tab, idx) =>
+        tab.classList.toggle("active", idx === i)
+      );
+
+      const day = itinerary[i];
+      dayContent.innerHTML = `
+        <div class="day-header">
+          <div class="day-title-block">
+            ${day.title}
+            <small>${day.date}（${day.weekday}）</small>
+          </div>
+          <div class="weather">
+            <div class="temp">${day.weather.temp}°</div>
+            <div>${day.weather.icon} ${day.weather.place}</div>
+          </div>
+        </div>
+        ${day.events
+          .map(
+            (e) => `
+          <div class="card">
+            <div class="card-header">
+              <div class="time">${e.time}</div>
+              <div class="tag">${e.tag}</div>
+            </div>
+            <div class="card-title">${e.title}</div>
+            ${
+              e.subtitle
+                ? `<div class="card-subtitle">${e.subtitle}</div>`
+                : ""
+            }
+            ${
+              e.meta ? `<div class="card-meta">${e.meta}</div>` : ""
+            }
+          </div>
+        `
+          )
+          .join("")}
+      `;
+    }
+
+    renderDay(0);
+  </script>
+</body>
+</html>
