@@ -1,0 +1,257 @@
+const itinerary = [
+  {
+    id: "D1",
+    date: "01/01",
+    weekday: "三",
+    title: "抵達福岡・逛街・入住酒店",
+    weather: { temp: 8, icon: "⛅️", place: "福岡" },
+    events: [
+      {
+        time: "11:00",
+        tag: "抵達",
+        title: "抵達福岡機場",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "12:30",
+        tag: "購物",
+        title: "LaLaport 福岡",
+        subtitle: "大型購物中心",
+        meta: ""
+      },
+      {
+        time: "15:00",
+        tag: "景點",
+        title: "博多運河城",
+        subtitle: "逛街・吃飯・購物",
+        meta: ""
+      },
+      {
+        time: "住宿",
+        tag: "飯店",
+        title: "S-Peria Hotel Hakata",
+        subtitle: "含早餐",
+        meta: ""
+      }
+    ]
+  },
+
+  {
+    id: "D2",
+    date: "01/02",
+    weekday: "四",
+    title: "租車・九州野生動物園・別府地獄谷・由布院",
+    weather: { temp: 6, icon: "☀️", place: "大分" },
+    events: [
+      {
+        time: "09:00",
+        tag: "租車",
+        title: "取車：スカイレンタカー博多駅店",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "11:00",
+        tag: "景點",
+        title: "九州野生動物園",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "13:00",
+        tag: "景點",
+        title: "別府地獄谷",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "14:30",
+        tag: "展望",
+        title: "狭霧台上展望所",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "15:00",
+        tag: "景點",
+        title: "由布院・湯布院童話村",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "住宿",
+        tag: "飯店",
+        title: "花之湯旅館 Oyado Hananoyu",
+        subtitle: "需於 18:00 前 check in",
+        meta: ""
+      }
+    ]
+  },
+
+  {
+    id: "D3",
+    date: "01/03",
+    weekday: "五",
+    title: "上色見熊野座神社・阿蘇火山・草千里・入住山中 Villa",
+    weather: { temp: 3, icon: "🌤", place: "阿蘇" },
+    events: [
+      {
+        time: "11:00",
+        tag: "景點",
+        title: "上色見熊野座神社",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "12:30",
+        tag: "景點",
+        title: "阿蘇中岳火山口",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "14:00",
+        tag: "自然",
+        title: "草千里之濱",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "16:00",
+        tag: "採買",
+        title: "Ebisupana Aso 採購晚餐",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "住宿",
+        tag: "Villa",
+        title: "藤のヴィラ Fujino Villa",
+        subtitle: "房間密碼：0325",
+        meta: ""
+      }
+    ]
+  },
+
+  {
+    id: "D4",
+    date: "01/04",
+    weekday: "六",
+    title: "阿蘇直升機・高千歲小火車・天安河原・入住高千穗",
+    weather: { temp: 5, icon: "⛅️", place: "高千穗" },
+    events: [
+      {
+        time: "10:00",
+        tag: "體驗",
+        title: "阿蘇山直升機遊覽",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "14:00",
+        tag: "觀光",
+        title: "高千歲小火車",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "15:30",
+        tag: "景點",
+        title: "天安河原",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "住宿",
+        tag: "飯店",
+        title: "Hotel Takachiho",
+        subtitle: "含早餐 + 晚餐",
+        meta: ""
+      }
+    ]
+  },
+
+  {
+    id: "D5",
+    date: "01/05",
+    weekday: "日",
+    title: "高千穗划船・太宰府天滿宮・天神逛街・還車",
+    weather: { temp: 8, icon: "🌤", place: "福岡" },
+    events: [
+      {
+        time: "08:30",
+        tag: "早餐",
+        title: "於飯店享用早餐",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "10:00",
+        tag: "體驗",
+        title: "高千穗划船",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "13:00",
+        tag: "景點",
+        title: "太宰府天滿宮",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "15:00",
+        tag: "購物",
+        title: "天神 LOFT",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "17:00",
+        tag: "美食",
+        title: "買明太子麵包",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "20:00",
+        tag: "還車",
+        title: "スカイレンタカー博多駅店 還車",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "住宿",
+        tag: "飯店",
+        title: "ZONK HOTEL Hakata",
+        subtitle: "",
+        meta: ""
+      }
+    ]
+  },
+
+  {
+    id: "D6",
+    date: "01/06",
+    weekday: "一",
+    title: "回程・搭機返台",
+    weather: { temp: 8, icon: "☀️", place: "福岡" },
+    events: [
+      {
+        time: "09:00",
+        tag: "交通",
+        title: "抵達機場",
+        subtitle: "",
+        meta: ""
+      },
+      {
+        time: "11:40",
+        tag: "搭機",
+        title: "搭機返台",
+        subtitle: "",
+        meta: ""
+      }
+    ]
+  }
+];
