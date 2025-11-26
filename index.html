@@ -4,179 +4,520 @@
   <meta charset="UTF-8" />
   <title>CHIA X HAO 🇯🇵 九州之旅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif; }
-    body { background: #0d0f33; color: #fff; display: flex; justify-content: center; padding: 24px 12px; }
-    .app { width: 100%; max-width: 420px; background: linear-gradient(180deg, #3447ff 0%, #4c6dff 40%, #f5f6fb 40%); border-radius: 28px; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,0.35); }
+    /* ===== 文青色主題配色 ===== */
+    :root {
+      --bg-main: #f7f5ef;          /* 奶油米白 */
+      --bg-header: #d9e2d2;       /* 淺草綠 */
+      --bg-tab: #e7ecdf;          /* 淺灰綠 */
+      --tab-active: #b8c9b1;      /* 文青綠 */
+      --text-main: #3e4a3f;       /* 深墨綠 */
+      --card-bg: #ffffff;         /* 白色卡片 */
+      --card-shadow: rgba(0,0,0,0.08);
+      --accent: #6f8f72;          /* 重點綠 */
+    }
 
-    .app-header { padding: 20px 20px 12px; color: #fff; }
-    .trip-name { font-size: 22px; font-weight: 700; margin-bottom: 2px; }
-    .trip-sub { opacity: 0.9; font-size: 18px; font-weight: 600; }
-    .trip-dates { margin-top: 6px; font-size: 12px; opacity: 0.8; letter-spacing: 0.5px; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-    .day-tabs { display: flex; gap: 8px; padding: 12px 16px 18px; overflow-x: auto; scrollbar-width: none; }
+    body {
+      background: var(--bg-main);
+      display: flex;
+      justify-content: center;
+      padding: 24px 12px;
+      color: var(--text-main);
+    }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-main);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      border: 1px solid #e5e2da;
+    }
+
+    /* Header */
+    .app-header {
+      padding: 20px 20px 12px;
+      background: var(--bg-header);
+      color: var(--text-main);
+    }
+
+    .trip-name {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .trip-sub {
+      font-size: 16px;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+
+    .trip-dates {
+      font-size: 12px;
+      margin-top: 6px;
+      opacity: 0.7;
+    }
+
+    /* Tabs */
+    .day-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px 18px;
+      overflow-x: auto;
+      background: var(--bg-main);
+      scrollbar-width: none;
+    }
     .day-tabs::-webkit-scrollbar { display: none; }
-    .day-tab { flex: 0 0 auto; min-width: 64px; padding: 10px 8px; border-radius: 18px; background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.9); text-align: center; font-size: 11px; cursor: pointer; border: 0; transition: .2s; }
-    .day-tab.active { background: #fff; color: #3447ff; box-shadow: 0 4px 12px rgba(0,0,0,0.18); transform: translateY(-1px); }
-  
-    .content { padding: 18px; background: #f5f6fb; color: #1f2340; min-height: 340px; }
-    .day-header { display: flex; justify-content: space-between; margin-bottom: 14px; }
-    .day-title-block { font-size: 18px; font-weight: 700; }
-    .day-title-block small { display: block; font-size: 12px; color: #7b7f9a; margin-top: 4px; }
 
-    .weather { text-align: right; font-size: 13px; color: #7b7f9a; }
-    .weather .temp { font-size: 22px; font-weight: 700; color: #3447ff; }
+    .day-tab {
+      flex: 0 0 auto;
+      min-width: 64px;
+      padding: 10px 8px;
+      border-radius: 14px;
+      background: var(--bg-tab);
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px solid #d6d8ce;
+      color: var(--text-main);
+      transition: .2s;
+    }
 
-    .card { background: #fff; border-radius: 20px; padding: 14px; margin-bottom: 10px; box-shadow: 0 8px 18px rgba(0,0,0,0.05); }
-    .card-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-    .time { font-size: 18px; font-weight: 700; color: #3447ff; }
-    .tag { font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #eef0ff; color: #3447ff; }
-    .card-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-    .card-subtitle { font-size: 12px; color: #878ba2; margin-bottom: 4px; }
-    .card-meta { font-size: 11px; color: #a0a4bc; }
+    .day-tab.active {
+      background: var(--tab-active);
+      border-color: #a7b89f;
+      transform: translateY(-1px);
+    }
+
+    /* Content */
+    .content {
+      padding: 18px;
+      background: var(--bg-main);
+    }
+
+    .day-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .day-title-block {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .day-title-block small {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    /* Weather */
+    .weather {
+      text-align: right;
+      color: var(--accent);
+    }
+
+    .weather .temp {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 6px 14px var(--card-shadow);
+      cursor: pointer;
+      transition: 0.15s;
+      border: 1px solid #ecebe6;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .time {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #eef3ea;
+      color: var(--accent);
+      border: 1px solid #dae4d6;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
   </style>
 </head>
 <body>
-  <div class="app">
-    <header class="app-header">
-      <div class="trip-name">CHIA X HAO 🇯🇵 九州之旅</div>
-      <div class="trip-sub">Kyushu Japan</div>
-      <div class="trip-dates">JAN 01 – JAN 06, 2026</div>
-    </header>
+[第1段：<html> + 文青 style]
+<body>
+  [第2段：app header, tabs, content]
+<script>
 
-    <nav class="day-tabs" id="dayTabs"></nav>
-    <main class="content" id="dayContent"></main>
-  </div>
+  /* ====== 九州行程表＋Google Maps Link ====== */
+  const itinerary = [
+    {
+      id: "D1",
+      date: "01/01",
+      weekday: "三",
+      city: "Fukuoka",
+      title: "抵達福岡・LaLaport・博多運河城",
+      events: [
+        {
+          time: "11:00",
+          tag: "抵達",
+          title: "福岡機場",
+          map: "https://www.google.com/maps/place/Fukuoka+Airport/"
+        },
+        {
+          time: "12:00",
+          tag: "購物",
+          title: "LaLaport 福岡",
+          map: "https://www.google.com/maps/place/ららぽーと福岡/"
+        },
+        {
+          time: "15:00",
+          tag: "景點",
+          title: "博多運河城 Canal City Hakata",
+          map: "https://www.google.com/maps/place/Canal+City+Hakata/"
+        },
+        {
+          time: "住宿",
+          tag: "飯店",
+          title: "S-Peria Hotel Hakata（含早）",
+          map: "https://www.google.com/maps/place/S-Peria+Hotel+Hakata/"
+        }
+      ]
+    },
 
-  <script>
-    const API_KEY = "f59530fab0600c5a0ff62aa969a9e59a";
+    {
+      id: "D2",
+      date: "01/02",
+      weekday: "四",
+      city: "Oita",
+      title: "租車・野生動物園・別府地獄谷・湯布院",
+      events: [
+        {
+          time: "09:00",
+          tag: "租車",
+          title: "スカイレンタカー博多駅店（取車）",
+          map: "https://www.google.com/maps/place/スカイレンタカー+博多駅店/"
+        },
+        {
+          time: "11:00",
+          tag: "景點",
+          title: "九州自然動物公園（African Safari）",
+          map: "https://www.google.com/maps/place/Africa+Safari/"
+        },
+        {
+          time: "13:00",
+          tag: "景點",
+          title: "別府海地獄",
+          map: "https://www.google.com/maps/place/海地獄/"
+        },
+        {
+          time: "14:30",
+          tag: "展望",
+          title: "狭霧台展望所",
+          map: "https://www.google.com/maps/place/狭霧台展望所/"
+        },
+        {
+          time: "15:00",
+          tag: "景點",
+          title: "湯布院童話村（フローラルビレッジ）",
+          map: "https://www.google.com/maps/place/Yufuin+Floral+Village/"
+        },
+        {
+          time: "住宿",
+          tag: "飯店",
+          title: "花之湯旅館 Oyado Hananoyu（18:00前入住）",
+          map: "https://www.google.com/maps/place/Oyado+Hananoyu/"
+        }
+      ]
+    },
 
-    async function getWeather(city) {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=zh_tw`;
+    {
+      id: "D3",
+      date: "01/03",
+      weekday: "五",
+      city: "Aso",
+      title: "上色見神社・阿蘇火山口・草千里・入住 Villa",
+      events: [
+        {
+          time: "11:00",
+          tag: "景點",
+          title: "上色見熊野座神社",
+          map: "https://www.google.com/maps/place/Kamishikimi+Kumanoza+Shrine/"
+        },
+        {
+          time: "12:30",
+          tag: "景點",
+          title: "阿蘇中岳火山口",
+          map: "https://www.google.com/maps/place/Mount+Aso+Crater/"
+        },
+        {
+          time: "14:00",
+          tag: "自然",
+          title: "草千里ヶ浜",
+          map: "https://www.google.com/maps/place/Kusasenrigahama/"
+        },
+        {
+          time: "16:00",
+          tag: "採買",
+          title: "Ebisupana Aso（採買晚餐）",
+          map: "https://www.google.com/maps/place/Ebisupana+ASO/"
+        },
+        {
+          time: "住宿",
+          tag: "Villa",
+          title: "藤のヴィラ Fujino Villa（密碼 0325）",
+          map: "https://www.google.com/maps/place/Fujino+Villa/"
+        }
+      ]
+    },
+
+    {
+      id: "D4",
+      date: "01/04",
+      weekday: "六",
+      city: "Takachiho",
+      title: "阿蘇直升機・高千穗小火車・天安河原",
+      events: [
+        {
+          time: "10:00",
+          tag: "體驗",
+          title: "阿蘇直升機遊覽",
+          map: "https://www.google.com/maps/place/Aso+Helicopter+Tour/"
+        },
+        {
+          time: "14:00",
+          tag: "交通",
+          title: "高千穗小火車（アマテラス鉄道）",
+          map: "https://www.google.com/maps/place/Takachiho+Amaterasu+Railway/"
+        },
+        {
+          time: "15:30",
+          tag: "景點",
+          title: "天安河原",
+          map: "https://www.google.com/maps/place/Amano+Yasugawara/"
+        },
+        {
+          time: "住宿",
+          tag: "飯店",
+          title: "Hotel Takachiho（含早＋晚）",
+          map: "https://www.google.com/maps/place/Hotel+Takachiho/"
+        }
+      ]
+    },
+
+    {
+      id: "D5",
+      date: "01/05",
+      weekday: "日",
+      city: "Fukuoka",
+      title: "划船・太宰府・天神・還車",
+      events: [
+        {
+          time: "08:30",
+          tag: "早餐",
+          title: "飯店早餐",
+          map: "https://www.google.com/maps/place/Hotel+Takachiho/"
+        },
+        {
+          time: "10:00",
+          tag: "體驗",
+          title: "高千穗峡划船",
+          map: "https://www.google.com/maps/place/Takachiho+Gorge+Boat+Rental/"
+        },
+        {
+          time: "13:00",
+          tag: "景點",
+          title: "太宰府天满宫",
+          map: "https://www.google.com/maps/place/Dazaifu+Tenmangu+Shrine/"
+        },
+        {
+          time: "15:00",
+          tag: "購物",
+          title: "天神 LOFT",
+          map: "https://www.google.com/maps/place/LOFT+Tenjin/"
+        },
+        {
+          time: "17:00",
+          tag: "美食",
+          title: "買明太子麵包",
+          map: "https://www.google.com/maps/place/Tenjin/"
+        },
+        {
+          time: "20:00",
+          tag: "還車",
+          title: "スカイレンタカー博多駅店（還車）",
+          map: "https://www.google.com/maps/place/スカイレンタカー+博多駅店/"
+        },
+        {
+          time: "住宿",
+          tag: "飯店",
+          title: "ZONK HOTEL Hakata",
+          map: "https://www.google.com/maps/place/ZONK+Hotel+Hakata/"
+        }
+      ]
+    },
+
+    {
+      id: "D6",
+      date: "01/06",
+      weekday: "一",
+      city: "Fukuoka",
+      title: "返台",
+      events: [
+        {
+          time: "09:00",
+          tag: "交通",
+          title: "抵達福岡機場",
+          map: "https://www.google.com/maps/place/Fukuoka+Airport/"
+        },
+        {
+          time: "11:40",
+          tag: "搭機",
+          title: "回台灣",
+          map: "https://www.google.com/maps/place/Fukuoka+Airport/"
+        }
+      ]
+    }
+  ];
+  /* ====== OpenWeather API（自動天氣） ====== */
+  const API_KEY = "f59530fab0600c5a0ff62aa969a9e59a";
+
+  async function getWeather(city) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=zh_tw`;
+
+    try {
       const res = await fetch(url);
       const data = await res.json();
+
       return {
         temp: Math.round(data.main.temp),
         icon: convertIcon(data.weather[0].icon)
       };
+    } catch (err) {
+      console.error("Weather API Error", err);
+      return { temp: "--", icon: "🌤" };
     }
+  }
 
-    function convertIcon(code) {
-      if (code.includes("01")) return "☀️";
-      if (code.includes("02")) return "⛅️";
-      if (code.includes("03")) return "☁️";
-      if (code.includes("04")) return "☁️";
-      if (code.includes("09")) return "🌧";
-      if (code.includes("10")) return "🌦";
-      if (code.includes("11")) return "⛈";
-      if (code.includes("13")) return "❄️";
-      if (code.includes("50")) return "🌫";
-      return "🌤";
-    }
+  /* OpenWeather icon mapping → emoji */
+  function convertIcon(code) {
+    if (code.includes("01")) return "☀️";
+    if (code.includes("02")) return "⛅️";
+    if (code.includes("03")) return "🌥";
+    if (code.includes("04")) return "☁️";
+    if (code.includes("09")) return "🌧";
+    if (code.includes("10")) return "🌦";
+    if (code.includes("11")) return "⛈";
+    if (code.includes("13")) return "❄️";
+    if (code.includes("50")) return "🌫";
+    return "🌤";
+  }
 
-    const itinerary = [
-      { id:"D1", date:"01/01", weekday:"三", city:"Fukuoka",
-        title:"抵達福岡・LaLaport・博多運河城",
-        events:[
-          {time:"11:00", tag:"抵達", title:"抵達福岡"},
-          {time:"12:00", tag:"購物", title:"LaLaport 福岡"},
-          {time:"15:00", tag:"景點", title:"博多運河城"},
-          {time:"住宿", tag:"飯店", title:"S-Peria Hotel Hakata", subtitle:"含早餐"}
-        ]
-      },
-      { id:"D2", date:"01/02", weekday:"四", city:"Oita",
-        title:"租車・野生動物園・別府地獄谷・由布院",
-        events:[
-          {time:"09:00", tag:"租車", title:"スカイレンタカー博多駅店"},
-          {time:"11:00", tag:"景點", title:"九州野生動物園"},
-          {time:"13:00", tag:"景點", title:"別府地獄谷"},
-          {time:"14:30", tag:"展望", title:"狭霧台上展望所"},
-          {time:"15:00", tag:"景點", title:"湯布院童話村"},
-          {time:"住宿", tag:"飯店", title:"花之湯旅館 Oyado Hananoyu", subtitle:"18:00 前需入住"}
-        ]
-      },
-      { id:"D3", date:"01/03", weekday:"五", city:"Aso",
-        title:"上色見神社・阿蘇火山口・草千里・入住 Villa",
-        events:[
-          {time:"11:00", tag:"景點", title:"上色見熊野座神社"},
-          {time:"12:30", tag:"景點", title:"阿蘇中岳火山口"},
-          {time:"14:00", tag:"自然", title:"草千里之濱"},
-          {time:"16:00", tag:"採買", title:"Ebisupana Aso"},
-          {time:"住宿", tag:"Villa", title:"藤のヴィラ Fujino Villa", subtitle:"密碼 0325"}
-        ]
-      },
-      { id:"D4", date:"01/04", weekday:"六", city:"Takachiho",
-        title:"阿蘇直升機・高千歲小火車・天安河原",
-        events:[
-          {time:"10:00", tag:"體驗", title:"阿蘇山直升機遊覽"},
-          {time:"14:00", tag:"交通", title:"高千歲小火車"},
-          {time:"15:30", tag:"景點", title:"天安河原"},
-          {time:"住宿", tag:"飯店", title:"Hotel Takachiho", subtitle:"含早＋晚餐"}
-        ]
-      },
-      { id:"D5", date:"01/05", weekday:"日", city:"Fukuoka",
-        title:"划船・太宰府・天神・還車",
-        events:[
-          {time:"08:30", tag:"早餐", title:"飯店早餐"},
-          {time:"10:00", tag:"體驗", title:"高千穗划船"},
-          {time:"13:00", tag:"景點", title:"太宰府天滿宮"},
-          {time:"15:00", tag:"購物", title:"天神 LOFT"},
-          {time:"17:00", tag:"美食", title:"買明太子麵包"},
-          {time:"20:00", tag:"還車", title:"スカイレンタカー博多駅店"},
-          {time:"住宿", tag:"飯店", title:"ZONK HOTEL Hakata"}
-        ]
-      },
-      { id:"D6", date:"01/06", weekday:"一", city:"Fukuoka",
-        title:"返台",
-        events:[
-          {time:"09:00", tag:"交通", title:"抵達機場"},
-          {time:"11:40", tag:"搭機", title:"回台灣"}
-        ]
-      }
-    ];
+  /* ====== Tabs 建立 ====== */
+  const dayTabs = document.getElementById("dayTabs");
+  const dayContent = document.getElementById("dayContent");
 
-    const dayTabs = document.getElementById("dayTabs");
-    const dayContent = document.getElementById("dayContent");
+  itinerary.forEach((day, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "day-tab" + (idx === 0 ? " active" : "");
+    btn.innerHTML = `
+      <span class="date">${day.date}</span>
+      <span class="label">${day.id}</span>
+    `;
+    btn.onclick = () => renderDay(idx);
+    dayTabs.appendChild(btn);
+  });
 
-    itinerary.forEach((day, idx) => {
-      const btn = document.createElement("button");
-      btn.className = "day-tab" + (idx===0?" active":"");
-      btn.innerHTML = `<span class="date">${day.date}</span><span class="label">${day.id}</span>`;
-      btn.onclick = () => renderDay(idx);
-      dayTabs.appendChild(btn);
-    });
+  /* ====== 單日渲染 ====== */
+  async function renderDay(index) {
+    [...dayTabs.children].forEach((t, i) =>
+      t.classList.toggle("active", i === index)
+    );
 
-    async function renderDay(index) {
-      [...dayTabs.children].forEach((t,i)=>t.classList.toggle("active", i===index));
-      const day = itinerary[index];
+    const day = itinerary[index];
+    const weather = await getWeather(day.city);
 
-      const weather = await getWeather(day.city);
-
-      dayContent.innerHTML = `
-        <div class="day-header">
-          <div class="day-title-block">
-            ${day.title}
-            <small>${day.date}（${day.weekday}）</small>
-          </div>
-          <div class="weather">
-            <div class="temp">${weather.temp}°</div>
-            <div>${weather.icon} ${day.city}</div>
-          </div>
+    dayContent.innerHTML = `
+      <div class="day-header">
+        <div class="day-title-block">
+          ${day.title}
+          <small>${day.date}（${day.weekday}）</small>
         </div>
-        ${day.events.map(e => `
-          <div class="card">
-            <div class="card-header">
-              <div class="time">${e.time}</div>
-              <div class="tag">${e.tag}</div>
-            </div>
-            <div class="card-title">${e.title}</div>
-            ${e.subtitle ? `<div class="card-subtitle">${e.subtitle}</div>` : ""}
-          </div>
-        `).join("")}
-      `;
-    }
+        <div class="weather">
+          <div class="temp">${weather.temp}°</div>
+          <div>${weather.icon} ${day.city}</div>
+        </div>
+      </div>
 
-    renderDay(0);
-  </script>
+      ${day.events
+        .map(
+          (e) => `
+        <div class="card" onclick="openMap('${e.map}')">
+          <div class="card-header">
+            <div class="time">${e.time}</div>
+            <div class="tag">${e.tag}</div>
+          </div>
+          <div class="card-title">${e.title}</div>
+          ${
+            e.subtitle
+              ? `<div class="card-subtitle">${e.subtitle}</div>`
+              : ""
+          }
+        </div>
+      `
+        )
+        .join("")}
+    `;
+  }
+
+  /* ====== 點擊開啟 Google Maps ====== */
+  function openMap(url) {
+    window.open(url, "_blank");
+  }
+
+  /* 預設顯示第一天 */
+  renderDay(0);
+
+</script>
+
 </body>
 </html>
